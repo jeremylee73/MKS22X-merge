@@ -8,24 +8,44 @@ public class Merge{
     if (lo >= hi){
       return;
     }
-    int mid = data.length / 2;
+    int mid = (hi + lo) / 2;
     int[] leftSide = new int[mid];
-    for (int i=0; i<mid; i++){
-      leftSide[i] = data[i];
-    }
-    int[] rightSide = new int[mid+1];
-    if (data.length % 2 == 0){
-      rightSide = new int[mid];
-    }
     int j = 0;
-    for (int i=mid; i<data.length; i++){
+    for (int i=lo; i<mid; i++){
+      leftSide[j] = data[i];
+      j++;
+    }
+    int[] rightSide = new int[hi - mid];
+    j = 0;
+    for (int i=mid; i<hi; i++){
       rightSide[j] = data[i];
       j++;
     }
+
+    mergesort(data, findIndex(data,leftSide[0]), findIndex(data, leftSide[leftSide.length-1]));
+    mergesort(data, findIndex(data, rightSide[0]), findIndex(data,rightSide[rightSide.length-1]));
+  }
+
+  private static int findIndex(int[] data, int val){
+    for (int i=0; i<data.length; i++){
+      if (data[i] == val){
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  private static void printArray(int[] arr){
+    for (int i=0; i<arr.length-1; i++){
+      System.out.print(arr[i] +",");
+    }
+    System.out.print(arr[arr.length-1]);
+    System.out.println();
   }
 
   public static void main(String[] args){
     int[] data = {1, 2, 3, 4};
     mergesort(data, 0, 3);
+    printArray(data);
   }
 }
