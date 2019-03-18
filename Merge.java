@@ -12,16 +12,15 @@ public class Merge{
     int[] leftSide = new int[mid];
     for (int i=0; i<mid; i++){
       leftSide[i] = data[i];
-      System.out.print(leftSide[i] + ",");
     }
-    System.out.println();
     int[] rightSide = new int[mid+1];
     if (data.length % 2 == 0){
       rightSide = new int[mid];
     }
+    int j = 0;
     for (int i=mid; i<data.length; i++){
-      rightSide[rightSide.length - 1 - i] = data[i];
-      System.out.print(rightSide[i] + ",");
+      rightSide[j] = data[i];
+      j++;
     }
   }
 
