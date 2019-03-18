@@ -1,7 +1,7 @@
 public class Merge{
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[] data){
-
+    mergesort(data, 0, data.length-1);
   }
 
   private static void mergesort(int[] data, int lo, int hi){
@@ -45,7 +45,7 @@ public class Merge{
 
   public static void main(String[] args){
     int[] data = {1, 2, 3, 4};
-    mergesort(data, 0, 3);
+    mergesort(data);
     printArray(data);
   }
 }
