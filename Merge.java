@@ -68,8 +68,9 @@ public class Merge{
 
   private static void mergesort(int[] data, int lo, int hi){
     if (hi - lo == 1){
-      swap(data, lo, hi);
-      System.out.println("Two terms:" +data[lo]+","+data[hi]);
+      if (data[hi] < data[lo]){
+        swap(data, lo, hi);
+      }
       return;
     } else if (hi - lo < 1){
       return;
@@ -87,13 +88,23 @@ public class Merge{
       rightSide[j] = data[i];
       j++;
     }
-    System.out.println("Left:");
-    printArray(leftSide);
-    System.out.println("Right:");
-    printArray(rightSide);
-    mergesort(data, findIndex(data,leftSide[0]), findIndex(data, leftSide[leftSide.length-1]));
-    mergesort(data, findIndex(data, rightSide[0]), findIndex(data,rightSide[rightSide.length-1]));
-    mergeH(data, leftSide, rightSide, findIndex(data,leftSide[0]), findIndex(data,rightSide[rightSide.length-1]));
+    int leftIndexS = findIndex(data, leftSide[0]);
+    int leftIndexE = findIndex(data, leftSide[leftSide.length-1]);
+    int rightIndexS = findIndex(data, rightSide[0]);
+    int rightIndexE = findIndex(data,rightSide[rightSide.length-1]);
+    mergesort(data, leftIndexS, leftIndexE);
+    mergesort(data, rightIndexS, rightIndexE);
+    int count = 0;
+    for (int i=leftIndexS; i<=leftIndexE; i++){
+      leftSide[count] = data[i];
+      count++;
+    }
+    count = 0;
+    for (int i=rightIndexS; i<=rightIndexE; i++){
+      rightSide[count] = data[i];
+      count++;
+    }
+    mergeH(data, leftSide, rightSide, leftIndexS, rightIndexE);
   }
 
   private static int findIndex(int[] data, int val){
@@ -117,10 +128,10 @@ public class Merge{
     int[] test = {9,8,7,6,5,4,3,2,1};
     int[] left = {8,7,6};
     int[] right = {5,4,3};
-    mergeH(test, left, right, 1, 6);
-    printArray(test);
-    //mergesort(test);
+    //mergeH(test, left, right, 1, 6);
     //printArray(test);
+    mergesort(test);
+    printArray(test);
   //   System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
   //   int[]MAX_LIST = {1000000000,500,10};
   //   for(int MAX : MAX_LIST){
