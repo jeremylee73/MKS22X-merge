@@ -5,24 +5,30 @@ public class Merge{
     mergesort(data, 0, data.length-1);
   }
 
+  private static void swap(int[] data, int a, int b){
+    int temp = data[a];
+    data[a] = data[b];
+    data[b] = temp;
+  }
+
   private static void mergesort(int[] data, int lo, int hi){
-    if (lo >= hi){
+    if (hi - lo == 2){
+      swap(data, lo, hi);
       return;
     }
-    int mid = (hi + lo) / 2;
+    int mid = (hi + lo + 1) / 2;
     int[] leftSide = new int[mid];
     int j = 0;
     for (int i=lo; i<mid; i++){
       leftSide[j] = data[i];
       j++;
     }
-    int[] rightSide = new int[hi - mid];
+    int[] rightSide = new int[hi - mid + 1];
     j = 0;
-    for (int i=mid; i<hi; i++){
+    for (int i=mid; i<=hi; i++){
       rightSide[j] = data[i];
       j++;
     }
-
     mergesort(data, findIndex(data,leftSide[0]), findIndex(data, leftSide[leftSide.length-1]));
     mergesort(data, findIndex(data, rightSide[0]), findIndex(data,rightSide[rightSide.length-1]));
   }
