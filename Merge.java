@@ -125,13 +125,6 @@ public class Merge{
   }
 
   public static void main(String[]args){
-    // int[] test = {9,8,7,6,5,4,3,2,1};
-    // int[] left = {8,7,6};
-    // int[] right = {5,4,3};
-    // //mergeH(test, left, right, 1, 6);
-    // //printArray(test);
-    // mergesort(test);
-    // printArray(test);
     System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
     int[]MAX_LIST = {1000000000,500,10};
     for(int MAX : MAX_LIST){
