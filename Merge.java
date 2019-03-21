@@ -11,6 +11,57 @@ public class Merge{
     data[b] = temp;
   }
 
+  private static int[] mergeH(int[] data1, int[] data2){
+    int[] ans = new int[data1.length + data2.length];
+    int largest1 = 0;
+    for (int i=0; i<data1.length; i++){
+      if (data1[i] >= largest1){
+        largest1 = data1[i];
+      }
+    }
+    int largest2 = 0;
+    for (int i=0; i<data2.length; i++){
+      if (data2[i] >= largest2){
+        largest2 = data2[i];
+      }
+    }
+    int j = 0;
+    int count = 0;
+    if (largest1 > largest2){
+      for (int i=0; i<data1.length; i++){
+        if (j<data2.length){
+          if (data1[i] < data2[j]){
+            ans[count] = data1[i];
+          } else  {
+            ans[count] = data2[j];
+            j++;
+            i--;
+          }
+        } else {
+          ans[count] = data1[i];
+        }
+        count++;
+      }
+    } else {
+      for (int i=0; i<data2.length; i++){
+        if (j<data1.length){
+          if (data2[i] < data1[j]){
+            ans[count] = data2[i];
+          } else {
+            ans[count] = data1[j];
+            j++;
+            i--;
+          }
+
+        } else {
+          ans[count] = data2[i];
+        }
+        count++;
+      }
+    }
+    return ans;
+  }
+
   private static void mergesort(int[] data, int lo, int hi){
     if (hi - lo == 2){
       swap(data, lo, hi);
@@ -52,8 +103,11 @@ public class Merge{
 
   public static void main(String[]args){
     int[] test = {9,8,7,6,5,4,3,2,1};
-    mergesort(test);
-    printArray(test);
+    int[] help1 = {1,3,5};
+    int[] help2 = {2,4,6};
+    printArray(mergeH(help1, help2));
+    //mergesort(test);
+    //printArray(test);
   //   System.out.println("Size\t\tMax Value\tquick/builtin ratio ");
   //   int[]MAX_LIST = {1000000000,500,10};
   //   for(int MAX : MAX_LIST){
