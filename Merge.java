@@ -38,57 +38,6 @@ public class Merge{
           count++;
         }
       }
-    // int largest1 = 0;
-    // for (int i=0; i<data1.length; i++){
-    //   if (data1[i] >= largest1){
-    //     largest1 = data1[i];
-    //   }
-    // }
-    // int largest2 = 0;
-    // for (int i=0; i<data2.length; i++){
-    //   if (data2[i] >= largest2){
-    //     largest2 = data2[i];
-    //   }
-    // }
-    // int j = 0;
-    // int count = 0;
-    // if (largest1 > largest2){
-    //   for (int i=0; i<data1.length; i++){
-    //     if (j<data2.length){
-    //       if (data1[i] < data2[j]){
-    //         ans[count] = data1[i];
-    //       } else  {
-    //         ans[count] = data2[j];
-    //         j++;
-    //         i--;
-    //       }
-    //     } else {
-    //       ans[count] = data1[i];
-    //     }
-    //     count++;
-    //   }
-    // } else {
-    //   for (int i=0; i<data2.length; i++){
-    //     if (j<data1.length){
-    //       if (data2[i] < data1[j]){
-    //         ans[count] = data2[i];
-    //       } else {
-    //         ans[count] = data1[j];
-    //         j++;
-    //         i--;
-    //       }
-    //
-    //     } else {
-    //       ans[count] = data2[i];
-    //     }
-    //     count++;
-    //   }
-    // }
-    // count = 0;
-    // for (int h=s; h<=e; h++){
-    //   total[h] = ans[count];
-    //   count++;
-    // }
   }
 
   private static void mergesort(int[] data, int[] temp, int lo, int hi){
@@ -104,22 +53,6 @@ public class Merge{
     for(int i=lo; i<=hi; i++) {
       temp[i] = data[i];
     }
-    // int[] leftSide = new int[mid - lo];
-    // int j = 0;
-    // for (int i=lo; i<mid; i++){
-    //   leftSide[j] = data[i];
-    //   j++;
-    // }
-    // int[] rightSide = new int[hi - mid + 1];
-    // j = 0;
-    // for (int i=mid; i<=hi; i++){
-    //   rightSide[j] = data[i];
-    //   j++;
-    // }
-    // int leftIndexS = lo;
-    // int leftIndexE = mid - 1;
-    // int rightIndexS = mid;
-    // int rightIndexE = hi;
     mergesort(temp, data, lo, mid);
     mergesort(temp, data, mid+1, hi);
     mergeH(data, temp, lo, mid, hi);
